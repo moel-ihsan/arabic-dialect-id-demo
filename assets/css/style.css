@@ -700,7 +700,10 @@
     height: 2  !important;
   }
 
+  .stAppToolbar > div > div:last-child {
+    display: none !important;
+  }
 
-  #MainMenu {visibility: hidden;}
-    footer {visibility: hidden;}
-    header {visibility: hidden;}
+  button[data-testid="manage-app-button"] {
+      display: none !important;
+  }
