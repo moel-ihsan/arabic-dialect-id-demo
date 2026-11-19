@@ -5,6 +5,8 @@ from __future__ import annotations
 import importlib.util
 import os
 import sys
+import tempfile
+import urllib.request
 import warnings
 
 import joblib
@@ -113,7 +115,6 @@ _inject_css(CSS_PATH)
 # =============================================================================
 # MODEL DISCOVERY & MEMORY-SAFE CACHED ARTIFACT LOADERS
 # =============================================================================
-@st.cache_data
 def discover_available_models() -> dict[tuple[str, str], str]:
     """Scan artifacts/models for available checkpoints across all 6 scenarios."""
     found: dict[tuple[str, str], str] = {}
@@ -127,6 +128,25 @@ def discover_available_models() -> dict[tuple[str, str], str]:
     return found
 
 
+def _ensure_lfs_checkpoint(filepath: str) -> str:
+    """Download actual LFS binary from GitHub media if container holds a 133-byte LFS pointer."""
+    if os.path.getsize(filepath) >= 2048:
+        return filepath
+    fname = os.path.basename(filepath)
+    url = f"https://media.githubusercontent.com/media/moel-ihsan/arabic-dialect-id-demo/main/artifacts/models/{fname}"
+    try:
+        tmp_path = f"{filepath}.tmp"
+        urllib.request.urlretrieve(url, tmp_path)
+        os.replace(tmp_path, filepath)
+        return filepath
+    except OSError:
+        fallback = os.path.join(tempfile.gettempdir(), fname)
+        if not os.path.isfile(fallback) or os.path.getsize(fallback) < 2048:
+            urllib.request.urlretrieve(url, f"{fallback}.tmp")
+            os.replace(f"{fallback}.tmp", fallback)
+        return fallback
+
+
 @st.cache_resource
 def load_shared_pipeline():
     """Load the 252 MB ShamiFeatureExtractor and LabelEncoder once per process."""
@@ -138,7 +158,8 @@ def load_shared_pipeline():
 @st.cache_resource(max_entries=3)
 def load_classifier(filepath: str):
     """Load and cache up to 3 tree classifiers to bound Streamlit Cloud memory."""
-    return joblib.load(filepath)
+    resolved = _ensure_lfs_checkpoint(filepath)
+    return joblib.load(resolved)
 
 
 def get_best_iteration(model) -> int:
