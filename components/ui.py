@@ -129,6 +129,61 @@ UI_ICONS: dict[str, str] = {
 }
 
 
+_FLAG_VIEWBOX = 'viewBox="0 0 36 24" aria-hidden="true"'
+
+# Authentic vector flags (Syria uses the updated Dec 2024 green-white-black three-star flag)
+DIALECT_FLAGS: dict[str, str] = {
+    "Syria": (
+        f'<svg class="adi-flag-svg" {_FLAG_VIEWBOX}>'
+        '<rect width="36" height="8" y="0" fill="#007A3D"/>'
+        '<rect width="36" height="8" y="8" fill="#FFFFFF"/>'
+        '<rect width="36" height="8" y="16" fill="#111111"/>'
+        '<polygon points="10.50,9.65 11.04,11.26 12.73,11.27 11.37,12.28 11.88,13.90 10.50,12.92 9.12,13.90 9.63,12.28 8.27,11.27 9.96,11.26" fill="#CE1126"/>'
+        '<polygon points="18.00,9.65 18.54,11.26 20.23,11.27 18.87,12.28 19.38,13.90 18.00,12.92 16.62,13.90 17.13,12.28 15.77,11.27 17.46,11.26" fill="#CE1126"/>'
+        '<polygon points="25.50,9.65 26.04,11.26 27.73,11.27 26.37,12.28 26.88,13.90 25.50,12.92 24.12,13.90 24.63,12.28 23.27,11.27 24.96,11.26" fill="#CE1126"/>'
+        '<rect width="35.2" height="23.2" x="0.4" y="0.4" fill="none" stroke="rgba(128,128,128,0.35)" stroke-width="0.8"/>'
+        "</svg>"
+    ),
+    "Jordan": (
+        f'<svg class="adi-flag-svg" {_FLAG_VIEWBOX}>'
+        '<rect width="36" height="8" y="0" fill="#111111"/>'
+        '<rect width="36" height="8" y="8" fill="#FFFFFF"/>'
+        '<rect width="36" height="8" y="16" fill="#007A3D"/>'
+        '<polygon points="0,0 16.5,12 0,24" fill="#CE1126"/>'
+        '<polygon points="5.60,9.75 6.04,11.08 7.36,10.60 6.59,11.77 7.79,12.50 6.40,12.64 6.58,14.03 5.60,13.02 4.62,14.03 4.80,12.64 3.41,12.50 4.61,11.77 3.84,10.60 5.16,11.08" fill="#FFFFFF"/>'
+        '<rect width="35.2" height="23.2" x="0.4" y="0.4" fill="none" stroke="rgba(128,128,128,0.35)" stroke-width="0.8"/>'
+        "</svg>"
+    ),
+    "Palestine": (
+        f'<svg class="adi-flag-svg" {_FLAG_VIEWBOX}>'
+        '<rect width="36" height="8" y="0" fill="#111111"/>'
+        '<rect width="36" height="8" y="8" fill="#FFFFFF"/>'
+        '<rect width="36" height="8" y="16" fill="#007A3D"/>'
+        '<polygon points="0,0 14,12 0,24" fill="#CE1126"/>'
+        '<rect width="35.2" height="23.2" x="0.4" y="0.4" fill="none" stroke="rgba(128,128,128,0.35)" stroke-width="0.8"/>'
+        "</svg>"
+    ),
+    "Lebanon": (
+        f'<svg class="adi-flag-svg" {_FLAG_VIEWBOX}>'
+        '<rect width="36" height="6" y="0" fill="#ED1C24"/>'
+        '<rect width="36" height="12" y="6" fill="#FFFFFF"/>'
+        '<rect width="36" height="6" y="18" fill="#ED1C24"/>'
+        '<path d="M18 6.8 L19.4 9.0 L18.5 9.0 L20.6 11.4 L19.2 11.4 L22.2 14.3 L18.9 14.3 L18.9 17.2 L17.1 17.2 L17.1 14.3 L13.8 14.3 L16.8 11.4 L15.4 11.4 L17.5 9.0 L16.6 9.0 Z" fill="#00A651"/>'
+        '<rect width="35.2" height="23.2" x="0.4" y="0.4" fill="none" stroke="rgba(128,128,128,0.35)" stroke-width="0.8"/>'
+        "</svg>"
+    ),
+}
+
+
+def render_dialect_flag(dialect: str, size: str = "sm") -> str:
+    """Return an HTML span wrapping the inline vector flag for a dialect."""
+    svg = DIALECT_FLAGS.get(dialect, "")
+    cls = "adi-flag adi-flag-lg" if size == "lg" else "adi-flag adi-flag-sm"
+    if not svg:
+        return f'<span class="adi-iso">{safe_text(DIALECT_META.get(dialect, {}).get("iso", "AR"))}</span>'
+    return f'<span class="{cls}" title="{safe_text(dialect)}">{svg}</span>'
+
+
 def render_html(markup: str) -> None:
     """Render trusted HTML markup into the Streamlit container."""
     st.markdown(markup, unsafe_allow_html=True)
@@ -323,7 +378,7 @@ def render_prediction_card(
         f"""
 <div class="adi-result">
   <div class="adi-result-main">
-    <div class="adi-iso-badge">{safe_text(meta["iso"])}</div>
+    <div class="adi-flag-badge">{render_dialect_flag(prediction, size="lg")}</div>
     <div>
       <div class="adi-result-dialect">
         <span>{safe_text(prediction)}</span>
@@ -361,7 +416,7 @@ def render_prob_bars(ranking_df: pd.DataFrame) -> None:
         color = meta["color"]
         rows_html.append(
             f'<div class="adi-bar-row">'
-            f'<div class="adi-bar-lbl"><span class="adi-iso">{safe_text(meta["iso"])}</span>{safe_text(dialect)}</div>'
+            f'<div class="adi-bar-lbl">{render_dialect_flag(dialect, size="sm")}{safe_text(dialect)}</div>'
             f'<div class="adi-bar-track">'
             f'<div class="adi-bar-fill" style="width:{pct:.2f}%;background:{color};"></div>'
             f'</div>'

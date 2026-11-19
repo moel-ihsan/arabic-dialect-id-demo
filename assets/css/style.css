@@ -176,7 +176,7 @@ section[data-testid="stSidebar"],
 
 /* Toggle / Checkbox vertical alignment */
 .st-key-ctrl_debug {
-  margin-top: 28px !important;
+  margin-top: 20px !important;
 }
 
 .st-key-ctrl_debug [data-testid="stCheckbox"] {
@@ -838,6 +838,40 @@ hr {
   background: var(--or1);
   border: 1px solid var(--bda);
   color: var(--or);
+}
+
+.adi-flag-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  border-radius: var(--rs);
+  background: var(--bg1);
+  border: 1px solid var(--bd-strong);
+  flex-shrink: 0;
+}
+
+.adi-flag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  line-height: 0;
+  vertical-align: middle;
+}
+
+.adi-flag-sm .adi-flag-svg {
+  width: 22px;
+  height: 15px;
+  border-radius: 3px;
+  display: block;
+}
+
+.adi-flag-lg .adi-flag-svg {
+  width: 38px;
+  height: 26px;
+  border-radius: 4px;
+  display: block;
 }
 
 .adi-result-dialect {

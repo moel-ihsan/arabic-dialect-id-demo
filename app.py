@@ -45,6 +45,7 @@ from components.ui import (  # noqa: E402
     compute_live_block_activations,
     hex_to_rgba,
     render_header,
+    render_dialect_flag,
     render_html,
     render_info_grid,
     render_lead,
@@ -501,7 +502,6 @@ with tab_infer:
                             batch_rows.append(
                                 {
                                     "Text": txt,
-                                    "ISO": DIALECT_META[pred]["iso"],
                                     "Prediction": pred,
                                     "Confidence (%)": round(r["confidence"] * 100, 2),
                                     "Margin (%)": round(r["margin"] * 100, 2),
@@ -512,7 +512,6 @@ with tab_infer:
                             batch_rows.append(
                                 {
                                     "Text": txt,
-                                    "ISO": "N/A",
                                     "Prediction": "Insufficient Arabic Content",
                                     "Confidence (%)": None,
                                     "Margin (%)": None,
@@ -791,7 +790,7 @@ with tab_method:
                 "key": "dialect",
                 "label": "Dialect",
                 "html_fn": lambda r: (
-                    f'<span class="adi-iso">{safe_text(r["iso"])}</span> '
+                    f'{render_dialect_flag(r["dialect"], size="sm")} '
                     f'{safe_text(r["dialect"])} '
                     f'<span class="adi-dialect-ar" dir="rtl">{safe_text(r["arabic"])}</span>'
                 ),
