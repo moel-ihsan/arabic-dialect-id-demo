@@ -135,9 +135,13 @@ section[data-testid="stSidebar"],
 }
 
 [data-testid="stSelectbox"] [data-baseweb="select"] > div > div:first-child > div {
+  display: flex !important;
+  align-items: center !important;
+  height: auto !important;
+  min-height: 0 !important;
   padding: 0 !important;
   margin: 0 !important;
-  line-height: 1.25 !important;
+  line-height: 1.2 !important;
 }
 
 [data-testid="stSelectbox"] [data-baseweb="select"] > div > div:last-child {
@@ -154,7 +158,6 @@ section[data-testid="stSidebar"],
   margin: 0 !important;
   width: 18px !important;
   height: 18px !important;
-  transform: translateY(-1.5px);
 }
 
 /* Scoped widget titles only — prevents leaking uppercase/small font onto radio options */
@@ -698,6 +701,7 @@ hr {
   line-height: 1.2;
   font-weight: 600;
   color: var(--t0);
+  white-space: nowrap;
 }
 
 .adi-strat-svg {
@@ -973,9 +977,9 @@ hr {
   color: var(--t2);
   background: var(--bg1);
   border-bottom: 1px solid var(--bd-strong);
-  padding: 0.52rem 0.52rem;
+  padding: 0.56rem 0.68rem;
   text-align: left;
-  white-space: normal;
+  white-space: nowrap;
 }
 
 .adi-table th.is-num,
@@ -983,10 +987,11 @@ hr {
   text-align: right;
   font-family: 'IBM Plex Mono', monospace;
   font-variant-numeric: tabular-nums;
+  white-space: nowrap;
 }
 
 .adi-table td {
-  padding: 0.46rem 0.52rem;
+  padding: 0.5rem 0.68rem;
   border-bottom: 1px solid var(--bd);
   color: var(--t1);
   vertical-align: middle;
