@@ -175,6 +175,10 @@ section[data-testid="stSidebar"],
 }
 
 /* Toggle / Checkbox vertical alignment */
+.st-key-ctrl_debug {
+  margin-top: 28px !important;
+}
+
 .st-key-ctrl_debug [data-testid="stCheckbox"] {
   min-height: 40px !important;
   display: flex !important;
@@ -680,7 +684,7 @@ hr {
   border-radius: var(--rs);
   padding: 0.28rem 0.72rem;
   min-height: 40px;
-  margin: 0;
+  margin: 28px 0 0;
 }
 
 .adi-inline-meta-sub {
@@ -1099,8 +1103,9 @@ hr {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .st-key-ctrl_debug,
   .adi-inline-meta {
-    margin-top: 0;
+    margin-top: 0 !important;
   }
 
   .adi-info-grid {

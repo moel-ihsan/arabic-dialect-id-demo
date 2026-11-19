@@ -315,7 +315,7 @@ with tab_infer:
     if "batch_text" not in st.session_state:
         st.session_state["batch_text"] = ""
 
-    ctrl1, ctrl2, ctrl3, ctrl4 = st.columns([1.05, 1.35, 0.85, 1.75], vertical_alignment="bottom")
+    ctrl1, ctrl2, ctrl3, ctrl4 = st.columns([1.05, 1.35, 0.85, 1.75])
     with ctrl1:
         st.selectbox(
             "Architecture",
