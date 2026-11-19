@@ -1000,7 +1000,7 @@ with tab_cite:
     render_lead(
         "<strong>Corpus Scope:</strong> Evaluated on the four-class Levantine Shami Dialect Corpus (Syrian, Lebanese, Palestinian, Jordanian); "
         "transfer to Egyptian, Gulf, or Maghrebi varieties requires external validation. "
-        "<strong>Checkpoint Hosting:</strong> Ten trained LightGBM/XGBoost checkpoints are bundled via Git LFS; sequential ASTRA-RADIANT is "
-        "reported in full across Benchmarks and Methodology. "
+        "<strong>Checkpoint Hosting:</strong> All 12 trained LightGBM and XGBoost checkpoints (spanning Original, SMOTE, ASTRA-SMOTE, SMOTE-RADIANT, "
+        "ASTRA-RADIANT, and Class Weight) are bundled via Git LFS for live inference. "
         "<strong>Topical Co-variation:</strong> Geographical entities and named markers are filtered via topic stopwords during preprocessing."
     )

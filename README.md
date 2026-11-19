@@ -23,8 +23,8 @@ This application unifies the experimental findings and live inference artifacts 
 
 ### 1. Live Inference & Diagnostics (`Inference` Tab)
 - **Sidebar-Free Inline Controls**: Switch between `LightGBM` and `XGBoost` and any hosted imbalance strategy checkpoint directly above the input workspace.
-- **Streamlined Classification Flow**: Select an architecture, imbalance strategy, and optional `Diagnostics` toggle, enter or pick an Arabic text sample (`Sample Arabic Inputs` pills), click `Run Classification` (or `Clear Text` to reset), and inspect the prediction across the 10 hosted Git LFS checkpoints (`Original`, `SMOTE`, `ASTRA-SMOTE`, `SMOTE-RADIANT`, and `Class Weight`; auto-detects `ASTRA-RADIANT` if `model_<algo>_kndbsmote.pkl` is placed in `artifacts/models/`).
-- **Decision Telemetry**: Outputs top predicted dialect (with ISO code and Arabic script), confidence (`max p`), decision margin (`p₁ − p₂`), and Shannon entropy (`H`).
+- **Streamlined Classification Flow**: Select an architecture, imbalance strategy, and optional `Diagnostics` toggle, enter or pick an Arabic text sample (`Sample Arabic Inputs` pills), click `Run Classification` (or `Clear Text` to reset), and inspect the prediction across all **12 hosted Git LFS checkpoints** (`Original`, `SMOTE`, `ASTRA-SMOTE`, `SMOTE-RADIANT`, `ASTRA-RADIANT`, and `Class Weight`).
+- **Decision Telemetry**: Outputs top predicted dialect (with country flag SVG and Arabic script), confidence (`max p`), decision margin (`p₁ − p₂`), and Shannon entropy (`H`).
 - **Curated Arabic Sample Pills**: One-click loading of six representative Arabic social-media texts (mentions, tatweel, URLs/hashtags, temporal cues, phone numbers, MSA elongation).
 - **Pipeline Diagnostics**: Optional toggle exposing noise scrubbing, light/aggressive normalization, character stream extraction, stopword filtering, and live non-zero activation density across all **12 blocks (5,644 dimensions)**.
 - **Collapsible Batch Classification**: Multi-line batch processing tucked in a collapsible expander with per-row telemetry and UTF-8 CSV export.
@@ -83,7 +83,7 @@ arabic-dialect-id-demo/
 │   └── images/                   # Brand icons and dashboard preview
 └── artifacts/
     ├── metadata/                 # Git LFS: shami_feature_extractor.pkl, label_encoder.pkl
-    └── models/                   # Git LFS: 10 trained LightGBM & XGBoost checkpoints
+    └── models/                   # Git LFS: 12 trained LightGBM & XGBoost checkpoints
 ```
 
 ---
