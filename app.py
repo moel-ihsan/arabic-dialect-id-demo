@@ -272,7 +272,8 @@ algo_key_map = {v: k for k, v in ALGO_LABELS.items()}
 sc_key_map = {v: k for k, v in SCENARIO_LABELS.items()}
 
 if "ctrl_algo" not in st.session_state:
-    st.session_state["ctrl_algo"] = ALGO_LABELS[ALGORITHMS[0]]
+    default_algo_key = "xgboost" if any(k[0] == "xgboost" for k in available_models) else ALGORITHMS[0]
+    st.session_state["ctrl_algo"] = ALGO_LABELS[default_algo_key]
 
 selected_algo_label = st.session_state["ctrl_algo"]
 selected_algo_key = algo_key_map[selected_algo_label]
@@ -284,9 +285,9 @@ if not live_scenarios_for_algo:
 
 live_sc_labels = [SCENARIO_LABELS[sc] for sc in live_scenarios_for_algo]
 default_sc_label = (
-    SCENARIO_LABELS["dbscansmote"]
-    if "dbscansmote" in live_scenarios_for_algo
-    else live_sc_labels[0]
+    SCENARIO_LABELS["astra_radiant"]
+    if "astra_radiant" in live_scenarios_for_algo
+    else (SCENARIO_LABELS["dbscansmote"] if "dbscansmote" in live_scenarios_for_algo else live_sc_labels[0])
 )
 if st.session_state.get("ctrl_strategy") not in live_sc_labels:
     st.session_state["ctrl_strategy"] = default_sc_label

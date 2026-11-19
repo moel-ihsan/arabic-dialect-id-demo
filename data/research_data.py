@@ -121,8 +121,8 @@ SCENARIO_COLORS = {
     "original": "#FF6B19",
     "smote": "#16A349",
     "knsmote": "#2663EB",
-    "dbscansmote": "#0BA5A0",
-    "astra_radiant": "#DB2777",
+    "dbscansmote": "#DB2777",
+    "astra_radiant": "#0BA5A0",
     "balanced_weighted": "#7C3AED",
 }
 
