@@ -315,7 +315,7 @@ with tab_infer:
     if "batch_text" not in st.session_state:
         st.session_state["batch_text"] = ""
 
-    ctrl1, ctrl2, ctrl3, ctrl4 = st.columns([1.15, 1.45, 0.95, 1.55])
+    ctrl1, ctrl2, ctrl3, ctrl4 = st.columns([1.05, 1.35, 0.85, 1.75], vertical_alignment="bottom")
     with ctrl1:
         st.selectbox(
             "Architecture",
@@ -329,7 +329,6 @@ with tab_infer:
             key="ctrl_strategy",
         )
     with ctrl3:
-        st.markdown('<div style="height: 1.55rem;"></div>', unsafe_allow_html=True)
         debug_mode = st.toggle("Diagnostics", value=False, key="ctrl_debug")
     with ctrl4:
         render_html(
@@ -337,12 +336,6 @@ with tab_infer:
             f'{render_strategy_badge(selected_sc_key, selected_sc_label)}'
             f'<div class="adi-inline-meta-sub">{safe_text(selected_algo_label)} · iter {active_bi:,} · 5,644 dims</div>'
             f'</div>'
-        )
-
-    if (selected_algo_key, "astra_radiant") not in available_models:
-        st.caption(
-            f"Live checkpoints loaded: {len(available_models)}/12. ASTRA-RADIANT results are reported in Benchmarks & Methodology; "
-            "add model_<algo>_kndbsmote.pkl to run live inference with it."
         )
 
     def _on_pill_change() -> None:
@@ -544,7 +537,7 @@ with tab_infer:
 with tab_bench:
     render_section("Held-Out Test Evaluation (N = 16,562, Strictly Leakage-Free)")
 
-    flt1, flt2 = st.columns([1.2, 1.3])
+    flt1, flt2 = st.columns([1.2, 1.3], vertical_alignment="bottom")
     with flt1:
         algo_filter = st.selectbox("Algorithm", ["All Models", "LightGBM", "XGBoost"], key="bench_algo")
     with flt2:

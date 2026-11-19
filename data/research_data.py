@@ -1112,7 +1112,7 @@ LINKS = {
 AUTHORS = [
     {
         "name": "Maulana Ihsan Ahmad",
-        "role": "Lead Researcher & M.Cs. Candidate",
+        "role": "Lead Researcher & M.Cs. Student",
         "affiliation": "Department of Computer Science and Electronics, Universitas Gadjah Mada",
         "email": "maulanaihsanahmad@mail.ugm.ac.id",
     },

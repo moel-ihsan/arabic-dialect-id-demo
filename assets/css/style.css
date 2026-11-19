@@ -107,24 +107,61 @@ section[data-testid="stSidebar"],
 }
 
 /* ── STREAMLIT CONTROLS ────────────────────────────────────────────────────── */
-[data-testid="stSelectbox"] > div > div {
+[data-testid="stSelectbox"] [data-baseweb="select"] > div {
   background: var(--bg2) !important;
   border: 1px solid var(--bd) !important;
   border-radius: var(--rs) !important;
   color: var(--t0) !important;
   font-family: 'Sora', sans-serif !important;
   font-size: 0.82rem !important;
+  min-height: 40px !important;
+  height: 40px !important;
+  padding: 0 0.65rem !important;
+  display: flex !important;
+  align-items: center !important;
 }
 
-[data-testid="stSelectbox"] > div > div:focus-within {
+[data-testid="stSelectbox"] [data-baseweb="select"] > div:focus-within {
   border-color: var(--or) !important;
   box-shadow: 0 0 0 2px var(--or1) !important;
 }
 
-[data-testid="stSelectbox"] label p,
-[data-testid="stRadio"] label p,
-[data-testid="stTextArea"] label p,
-[data-testid="stPills"] label p,
+[data-testid="stSelectbox"] [data-baseweb="select"] > div > div:first-child {
+  display: flex !important;
+  align-items: center !important;
+  height: 100% !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+[data-testid="stSelectbox"] [data-baseweb="select"] > div > div:first-child > div {
+  padding: 0 !important;
+  margin: 0 !important;
+  line-height: 1.25 !important;
+}
+
+[data-testid="stSelectbox"] [data-baseweb="select"] > div > div:last-child {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  height: 100% !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+[data-testid="stSelectbox"] [data-baseweb="select"] svg {
+  display: block !important;
+  margin: 0 !important;
+  width: 18px !important;
+  height: 18px !important;
+  transform: translateY(-1.5px);
+}
+
+/* Scoped widget titles only — prevents leaking uppercase/small font onto radio options */
+[data-testid="stSelectbox"] [data-testid="stWidgetLabel"] p,
+[data-testid="stRadio"] [data-testid="stWidgetLabel"] p,
+[data-testid="stTextArea"] [data-testid="stWidgetLabel"] p,
+[data-testid="stPills"] [data-testid="stWidgetLabel"] p,
 .st-key-sample_pill [data-testid="stWidgetLabel"] p {
   font-family: 'IBM Plex Mono', monospace !important;
   font-size: 0.66rem !important;
@@ -134,11 +171,78 @@ section[data-testid="stSidebar"],
   color: var(--t2) !important;
 }
 
-[data-testid="stCheckbox"] label,
-[data-testid="stToggle"] label {
+/* Toggle / Checkbox vertical alignment */
+.st-key-ctrl_debug [data-testid="stCheckbox"] {
+  min-height: 40px !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+[data-testid="stCheckbox"] label[data-baseweb="checkbox"],
+[data-testid="stToggle"] label[data-baseweb="checkbox"] {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  min-height: 24px !important;
+}
+
+[data-testid="stCheckbox"] label[data-baseweb="checkbox"] > div:first-of-type {
+  margin: 0 !important;
+  flex-shrink: 0 !important;
+}
+
+[data-testid="stCheckbox"] label[data-baseweb="checkbox"] [data-testid="stMarkdownContainer"],
+[data-testid="stCheckbox"] label[data-baseweb="checkbox"] p {
   font-family: 'Sora', sans-serif !important;
-  color: var(--t1) !important;
-  font-size: 0.8rem !important;
+  color: var(--t0) !important;
+  font-size: 0.82rem !important;
+  font-weight: 500 !important;
+  line-height: 1 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+/* Radio group & options vertical alignment */
+[data-testid="stRadio"] [role="radiogroup"] {
+  min-height: 40px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 1.15rem !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+[data-testid="stRadio"] label[data-baseweb="radio"] {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.45rem !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  min-height: 24px !important;
+}
+
+[data-testid="stRadio"] label[data-baseweb="radio"] > div:first-of-type {
+  margin: 0 !important;
+  flex-shrink: 0 !important;
+}
+
+[data-testid="stRadio"] label[data-baseweb="radio"] [data-testid="stMarkdownContainer"],
+[data-testid="stRadio"] label[data-baseweb="radio"] p {
+  font-family: 'Sora', sans-serif !important;
+  font-size: 0.82rem !important;
+  font-weight: 500 !important;
+  letter-spacing: normal !important;
+  text-transform: none !important;
+  color: var(--t0) !important;
+  line-height: 1 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: flex !important;
+  align-items: center !important;
 }
 
 [data-testid="stCheckbox"] label[data-baseweb="checkbox"]:has(input:checked) > div:first-of-type,
@@ -390,7 +494,7 @@ hr {
   align-items: flex-start;
   gap: 13px;
   min-width: 0;
-  flex: 1 1 460px;
+  flex: 1 1 360px;
 }
 
 .adi-header h1 {
@@ -450,7 +554,7 @@ hr {
 
 .adi-kpi-bar {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 1px;
   border: 1px solid var(--bd);
   border-radius: var(--rs);
@@ -566,26 +670,32 @@ hr {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  gap: 1px;
   background: var(--bg2);
   border: 1px solid var(--bd);
   border-left: 3px solid var(--or);
   border-radius: var(--rs);
-  padding: 0.45rem 0.75rem;
-  min-height: 44px;
-  margin-top: 1.45rem;
+  padding: 0.28rem 0.72rem;
+  min-height: 40px;
+  margin: 0;
 }
 
 .adi-inline-meta-sub {
   font-family: 'IBM Plex Mono', monospace;
-  font-size: 0.66rem;
+  font-size: 0.64rem;
+  line-height: 1.2;
   color: var(--t2);
-  margin-top: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .adi-strat-inline {
   display: inline-flex;
   align-items: center;
   gap: 7px;
+  font-size: 0.78rem;
+  line-height: 1.2;
   font-weight: 600;
   color: var(--t0);
 }
@@ -978,6 +1088,10 @@ hr {
 @media (max-width: 768px) {
   .main > .block-container {
     padding: 0.5rem 1rem 2.5rem !important;
+  }
+
+  .adi-kpi-bar {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .adi-inline-meta {
