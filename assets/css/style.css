@@ -99,11 +99,11 @@ section[data-testid="stSidebar"],
   flex-shrink: 0;
 }
 
-.adi-logo-img {
-  width: 24px;
-  height: 24px;
-  object-fit: contain;
-  filter: brightness(0) invert(1);
+.adi-logo-svg {
+  width: 22px;
+  height: 22px;
+  display: block;
+  flex-shrink: 0;
 }
 
 /* ── STREAMLIT CONTROLS ────────────────────────────────────────────────────── */

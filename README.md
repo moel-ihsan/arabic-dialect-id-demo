@@ -1,7 +1,13 @@
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/brand/svg/adi-logo-horizontal-white.svg">
+  <img alt="ADI — Arabic Dialect Identification" src="assets/brand/svg/adi-logo-horizontal-color.svg" width="320">
+</picture>
+
 # Arabic Dialect Identification — Interactive Research Dashboard
 
-[![Streamlit App](https://img.shields.io/badge/Live%20Demo-Streamlit-red?logo=streamlit)](https://arabic-dialect-identification.streamlit.app)
-[![DOI](https://img.shields.io/badge/IJEECS%202026-10.11591%2Fijeecs.v43.i1.pp259--270-blue)](https://doi.org/10.11591/ijeecs.v43.i1.pp259-270)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Streamlit-0BA5A0?logo=streamlit)](https://arabic-dialect-identification.streamlit.app)
+[![DOI](https://img.shields.io/badge/IJEECS%202026-10.11591%2Fijeecs.v43.i1.pp259--270-2663EB)](https://doi.org/10.11591/ijeecs.v43.i1.pp259-270)
+[![UGM Thesis](https://img.shields.io/badge/UGM%20ETD-M.Cs.%20Thesis%202026-0BA5A0)](https://etd.repository.ugm.ac.id/penelitian/detail/282346)
 [![Python 3.9.6](https://img.shields.io/badge/python-3.9.6-3776AB.svg)](https://www.python.org/)
 
 Interactive research and inference dashboard for **Levantine Arabic Dialect Identification** on the **Shami Dialect Corpus** (`N = 66,247` tweets across Syrian, Lebanese, Palestinian, and Jordanian dialects).
@@ -79,8 +85,9 @@ arabic-dialect-id-demo/
 │   ├── features.py               # ShamiFeatureExtractor (5,644-dim sparse-dense stack)
 │   └── stopwords.txt             # 838 Arabic stopwords matched to training extractor
 ├── assets/
+│   ├── brand/                    # Adapted ADI brand kit (svg/, png/, favicon/, preview.png)
 │   ├── css/style.css             # Dark & warm-light theme tokens and layout rules
-│   └── images/                   # Brand icons and dashboard preview
+│   └── images/                   # Runtime header SVG mark, app favicons, and dashboard preview
 └── artifacts/
     ├── metadata/                 # Git LFS: shami_feature_extractor.pkl, label_encoder.pkl
     └── models/                   # Git LFS: 12 trained LightGBM & XGBoost checkpoints

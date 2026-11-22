@@ -195,14 +195,14 @@ CURATED_EXAMPLES = [
     },
     {
         "id": "ex_url_lb",
-        "label": "URL + Lebanese هلق",
+        "label": "URL + Lebanese Cue",
         "text": "هلق رح نروح عالسوق بكّير، شفتو الرابط؟ https://shopdemo.site/deal #تخفيضات 50%",
         "gloss": "'Right now we're going to the market early, did you see the link?'",
         "note": "Tests URL/hashtag/digit removal while preserving Lebanese temporal cue هلق and future prefix رح.",
     },
     {
         "id": "ex_hassa_jo",
-        "label": "Temporal هسا",
+        "label": "Temporal Boundary",
         "text": "هسا خلينا نحكي جد لو حكتلك مين انا ممكن نتعرف شو رأيك — مين ؟؟؟",
         "gloss": "'Now let's talk seriously, if I told you who I am can we get to know each other?'",
         "note": "Captures temporal cue هسا and morphological suffix patterns across Levantine boundary regions.",

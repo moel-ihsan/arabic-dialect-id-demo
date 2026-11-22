@@ -27,7 +27,7 @@ CSS_PATH = os.path.join(ASSETS_DIR, "css", "style.css")
 METADATA_DIR = os.path.join(ARTIFACTS_DIR, "metadata")
 MODEL_DIR = os.path.join(ARTIFACTS_DIR, "models")
 
-LOGO_WEBP = os.path.join(ASSETS_DIR, "images", "adi.webp")
+LOGO_MARK_SVG = os.path.join(ASSETS_DIR, "images", "adi-mark-white.svg")
 LOGO_PNG = os.path.join(ASSETS_DIR, "images", "adi-32.png")
 
 if BASE_PATH not in sys.path:
@@ -316,7 +316,7 @@ active_model = load_classifier(active_ckpt_path)
 active_bi = get_best_iteration(active_model)
 current_model_tag = f"{selected_algo_label} + {selected_sc_label} (iter {active_bi:,})"
 
-render_header(LOGO_WEBP)
+render_header(LOGO_MARK_SVG)
 
 tab_infer, tab_bench, tab_method, tab_cite = st.tabs(
     [

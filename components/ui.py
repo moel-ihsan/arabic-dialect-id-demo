@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import base64
 import html
 from typing import Any, Callable, Iterable
 
@@ -212,10 +211,11 @@ def hex_to_rgba(hex_color: str, alpha: float) -> str:
 
 
 @st.cache_data
-def encode_logo_b64(path: str) -> str:
-    """Read and base64-encode a local image file once."""
-    with open(path, "rb") as f:
-        return base64.b64encode(f.read()).decode("ascii")
+def load_svg_markup(path: str) -> str:
+    """Read a local SVG mark once and attach the header emblem class."""
+    with open(path, "r", encoding="utf-8") as f:
+        svg = f.read().strip()
+    return svg.replace("<svg ", '<svg class="adi-logo-svg" aria-hidden="true" ', 1)
 
 
 def render_section(title: str) -> None:
@@ -248,15 +248,13 @@ def render_strategy_badge(sc_key: str, label: str | None = None) -> str:
 
 def render_header(logo_path: str) -> None:
     """Render a compact, single-card scholarly header with quick external links."""
-    logo_b64 = encode_logo_b64(logo_path)
+    logo_svg = load_svg_markup(logo_path)
     render_html(
         f"""
 <div class="adi-header">
   <div class="adi-header-top">
     <div class="adi-header-brand">
-      <div class="adi-logo-badge">
-        <img src="data:image/webp;base64,{logo_b64}" class="adi-logo-img" alt="ADI mark">
-      </div>
+      <div class="adi-logo-badge">{logo_svg}</div>
       <div>
         <h1><em>Arabic</em> Dialect Identification</h1>
         <div class="adi-desc">
